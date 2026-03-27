@@ -1,13 +1,9 @@
-const presetLabels = {
-    crossfade: 'Default crossfade',
-    slide: 'Slide preset',
-    reveal: 'Reveal preset',
-    direction: 'Direction-aware preset'
-};
+// ============================================================================
+// TEMPLATES
+// ============================================================================
 
-const root = document.documentElement;
-const sharedLayoutTemplate = document.createElement('template');
-sharedLayoutTemplate.innerHTML = `
+const headerTemplate = document.createElement('template');
+headerTemplate.innerHTML = `
     <header>
         <a class="logo" href="index.html">Page View Transitions</a>
         <div class="header-actions">
@@ -24,10 +20,28 @@ sharedLayoutTemplate.innerHTML = `
             <a class="button" href="https://github.com/carlwebdev/a-page-view-transitions-playground" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
         </div>
     </header>
+`;
+
+const footerTemplate = document.createElement('template');
+footerTemplate.innerHTML = `
     <footer>
         Page View Transitions API Demo &mdash; CSS &amp; HTML only
     </footer>
 `;
+
+function mountTemplate(templateElement, slotId) {
+    const slot = document.querySelector(`#${slotId}`);
+    if (!slot) {
+        return;
+    }
+    const clone = document.importNode(templateElement.content, true);
+    slot.replaceWith(clone);
+}
+
+function mountSharedLayout() {
+    mountTemplate(headerTemplate, 'site-header');
+    mountTemplate(footerTemplate, 'site-footer');
+}
 
 function getPresetElements() {
     return {
@@ -36,25 +50,18 @@ function getPresetElements() {
     };
 }
 
-function mountSharedLayout() {
-    const headerSlot = document.querySelector('#site-header');
-    const footerSlot = document.querySelector('#site-footer');
+// ============================================================================
+// PAGE VIEW TRANSITIONS
+// ============================================================================
 
-    if (!headerSlot || !footerSlot) {
-        return;
-    }
+const presetLabels = {
+    crossfade: 'Default crossfade',
+    slide: 'Slide preset',
+    reveal: 'Reveal preset',
+    direction: 'Direction-aware preset'
+};
 
-    const fragment = document.importNode(sharedLayoutTemplate.content, true);
-    const [headerNode, footerNode] = fragment.children;
-
-    if (headerNode) {
-        headerSlot.replaceWith(headerNode);
-    }
-
-    if (footerNode) {
-        footerSlot.replaceWith(footerNode);
-    }
-}
+const root = document.documentElement;
 
 function readStoredPreset() {
     try {
@@ -125,6 +132,10 @@ function wireDirectionHints() {
         }
     });
 }
+
+// ============================================================================
+// INITIALIZATION
+// ============================================================================
 
 mountSharedLayout();
 applyPreset(readStoredPreset());
