@@ -79,6 +79,7 @@ footer {
     text-align: center;
     font-size: 0.9rem;
     color: var(--muted);
+    view-transition-name: site-footer;
 }
 
 .logo {
@@ -214,6 +215,17 @@ footer {
 
 ::view-transition-old(site-header),
 ::view-transition-new(site-header) {
+    animation-duration: 0.001ms;
+    animation-timing-function: linear;
+}
+
+::view-transition-group(site-footer) {
+    animation-duration: 0.001ms;
+    animation-timing-function: linear;
+}
+
+::view-transition-old(site-footer),
+::view-transition-new(site-footer) {
     animation-duration: 0.001ms;
     animation-timing-function: linear;
 }
