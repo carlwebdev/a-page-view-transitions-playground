@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page View Transitions - Card 01 Copy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a class="logo" href="index.html">Page View Transitions</a>
+        <div class="header-actions">
+            <span class="demo-badge" id="transition-label">Default crossfade</span>
+            <label class="transition-control" for="transition-preset">
+                <span>Preset</span>
+                <select id="transition-preset" aria-label="Transition preset">
+                    <option value="crossfade">Crossfade</option>
+                    <option value="slide">Slide</option>
+                    <option value="reveal">Reveal</option>
+                    <option value="direction">Direction-aware</option>
+                </select>
+            </label>
+            <a class="button" href="https://github.com/your-username/your-repo" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="single">
+            <div class="single-text">
+                <h2 class="title" style="view-transition-name: title-01;">Single Image Title</h2>
+                <p class="description">This is a description for the single image.</p>
+            </div>
+
+            <img src="img/pexels-fotios-photos-1107717.jpg" alt="Single Image"
+            style="view-transition-name: card-01;">        
+        </div>
+    </main>
+
+    <footer>
+        Page View Transitions API Demo &mdash; CSS &amp; HTML only
+    </footer>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
